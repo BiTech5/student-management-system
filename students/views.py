@@ -48,10 +48,12 @@ def add_student(request:HttpRequest)->HttpResponse:
 def view_detail(request:HttpRequest,id:int)->HttpResponse:
     student = Student.objects.get(id=id)  
     return render(request, 'view_detail.html', {'student': student})
-
+from datetime import datetime
+import os
 def edit_student(request: HttpRequest, id: int) -> HttpResponse:
     student = Student.objects.get(id=id)
-    
+
+    dob=student.date_of_birth.strftime("%Y-%m-%d")
     if request.method == "POST":
         student.first_name = request.POST.get('first_name')
         student.last_name = request.POST.get('last_name')
@@ -65,12 +67,15 @@ def edit_student(request: HttpRequest, id: int) -> HttpResponse:
         student.parent_name = request.POST.get('parent_name')
         student.parent_phone = request.POST.get('parent_phone')
         student.blood_group = request.POST.get('blood_group')
-        student.photo = request.FILES.get('photo', student.photo) 
         
+        if 'photo' in request.FILES:
+            # print("Photo uploaded:", request.FILES['photo'])
+            student.photo=request.FILES['photo']        
         student.save()
+        # print("Updated photo path:", student.photo.url)
         return redirect('detail', id=student.id)
     
-    return render(request, 'edit.html', {'student': student})
+    return render(request, 'edit.html', {'student': student,'dob':dob})
 
 def delete_data(request:HttpRequest,id:int)->HttpRequest:
     student=Student.objects.get(id=id)

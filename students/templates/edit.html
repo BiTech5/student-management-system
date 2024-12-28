@@ -12,9 +12,9 @@
     {% else %}
     <img src="{% static 'image/blank.jpg' %}" alt="Default Photo" class="img-fluid rounded-circle" style="width: 150px; height: 150px;">
     {% endif %}
-    <input type="file" class="form-control" id="photo" name="photo">
-    <form method="POST" enctype="multipart/form-data">
+    <form method="POST" enctype="multipart/form-data" >
         {% csrf_token %}
+        <input type="file" class="form-control" id="photo" name="photo">
         <input type="hidden" name="id" value="{{ student.id }}">
         <div class="mb-3">
             <label for="first_name" class="form-label">First Name</label>
@@ -42,8 +42,11 @@
         <div class="mb-3">
             <label for="date_of_birth" class="form-label">Date of Birth</label>
             <input type="date" class="form-control" id="date_of_birth" name="date_of_birth"
-                value="{{ student.date_of_birth }}" required>
+                 required>
         </div>
+        <script>
+            document.getElementById('date_of_birth').value='{{ dob }}'
+        </script>
         <div class="mb-3">
             <label for="email" class="form-label">Email</label>
             <input type="email" class="form-control" id="email" name="email" value="{{ student.email }}" required>
