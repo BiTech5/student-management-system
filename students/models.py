@@ -4,7 +4,7 @@ from django.db import models
 class Student(models.Model):
     first_name: str = models.CharField(max_length=100)
     last_name: str = models.CharField(max_length=100)
-    roll_number: str = models.CharField(max_length=20, unique=True)
+    roll_number: str = models.IntegerField()
     GENDER_CHOICES = [
         ('M', 'Male'),
         ('F', 'Female'),
