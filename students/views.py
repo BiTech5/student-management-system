@@ -43,3 +43,8 @@ def add_student(request:HttpRequest)->HttpResponse:
         new_student.save()
         return redirect('index')
     return render(request,'add_student.html')
+
+
+def view_detail(request:HttpRequest,id:int)->HttpResponse:
+    student = Student.objects.get(id=id)  
+    return render(request, 'view_detail.html', {'student': student})

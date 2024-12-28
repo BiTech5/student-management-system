@@ -33,7 +33,8 @@
                     <td>{{ student.enrollment_date }}</td>
                     <td>{{ student.grade_level }}</td>
                     <td>{{ student.blood_group }}</td>
-                    <td><a href="#">View Details</a></td>
+                    <td><a href="{% url 'detail' student.id %}">View Details</a></td>
+                    
                 </tr>
                 {% endfor %}
             </tbody>
