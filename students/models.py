@@ -21,6 +21,7 @@ class Student(models.Model):
     parent_name: str = models.CharField(max_length=100)
     parent_phone: str = models.CharField(max_length=15)
     blood_group: str = models.CharField(max_length=5)
+    photo= models.ImageField(upload_to='student_photos/', blank=True, null=True)  # Added photo field
     
     def __str__(self) -> str:
         return f"{self.first_name} {self.last_name}"
