@@ -48,3 +48,31 @@ def add_student(request:HttpRequest)->HttpResponse:
 def view_detail(request:HttpRequest,id:int)->HttpResponse:
     student = Student.objects.get(id=id)  
     return render(request, 'view_detail.html', {'student': student})
+
+def edit_student(request: HttpRequest, id: int) -> HttpResponse:
+    student = Student.objects.get(id=id)
+    
+    if request.method == "POST":
+        student.first_name = request.POST.get('first_name')
+        student.last_name = request.POST.get('last_name')
+        student.roll_number = request.POST.get('roll_number')
+        student.gender = request.POST.get('gender')
+        student.date_of_birth = request.POST.get('date_of_birth')
+        student.email = request.POST.get('email')
+        student.phone_number = request.POST.get('phone_number')
+        student.address = request.POST.get('address')
+        student.grade_level = request.POST.get('grade_level')
+        student.parent_name = request.POST.get('parent_name')
+        student.parent_phone = request.POST.get('parent_phone')
+        student.blood_group = request.POST.get('blood_group')
+        student.photo = request.FILES.get('photo', student.photo) 
+        
+        student.save()
+        return redirect('detail', id=student.id)
+    
+    return render(request, 'edit.html', {'student': student})
+
+def delete_data(request:HttpRequest,id:int)->HttpRequest:
+    student=Student.objects.get(id=id)
+    student.delete()
+    return redirect('index')
