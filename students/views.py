@@ -22,6 +22,8 @@ def add_student(request: HttpRequest) -> HttpResponse:
         parent_phone: str = request.POST.get('parent_phone', '')
         blood_group: str = request.POST.get('blood_group', '')
         photo: Optional[Union[bytes, str]] = request.FILES.get('photo')
+        faculty:str=request.POST.get('faculty')
+        semester:str=request.POST.get('semester')
 
         # Create a new Student instance and save it to the database
         new_student = Student(
@@ -37,7 +39,9 @@ def add_student(request: HttpRequest) -> HttpResponse:
             parent_name=parent_name,
             parent_phone=parent_phone,
             blood_group=blood_group,
-            photo=photo
+            photo=photo,
+            faculty=faculty,
+            semester=semester
         )
         new_student.save()
         return redirect('index')

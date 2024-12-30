@@ -34,9 +34,30 @@
         <div class="mb-3">
             <label for="gender" class="form-label">Gender</label>
             <select class="form-select" id="gender" name="gender" required>
-                <option value="Male">Male</option>
-                <option value="FeMale">Female</option>
-                <option value="Other">Other</option>
+                <option {% if student.gender == 'M' %}selected{% endif %}value="Male">Male</option>
+                <option {% if student.gender == 'F' %}selected{% endif %}value="FeMale">Female</option>
+                <option {% if student.gender == 'O' %}selected{% endif %}value="Other">Other</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="faculty" class="form-label">Faculty</label>
+            <select class="form-select" id="faculty" name="faculty" required>
+                <option value="BBA-BI">BBA-BI</option>
+                <option value="BCSIT">BCSIT</option>
+                <option value="BBA">BBA</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="semester" class="form-label">Semester</label>
+            <select class="form-select" id="semester" name="semester" required>
+                <option value="1">First</option>
+                <option value="2">Second</option>
+                <option value="3">Third</option>
+                <option value="4">Fourth</option>
+                <option value="5">Fifth</option>
+                <option value="6">Sixth</option>
+                <option value="7">Seventh</option>
+                <option value="8">Eigth</option>
             </select>
         </div>
         <div class="mb-3">
@@ -60,11 +81,7 @@
             <label for="address" class="form-label">Address</label>
             <textarea class="form-control" id="address" name="address" required>{{ student.address }}</textarea>
         </div>
-        <div class="mb-3">
-            <label for="grade_level" class="form-label">Grade Level</label>
-            <input type="number" class="form-control" id="grade_level" name="grade_level"
-                value="{{ student.grade_level }}" required>
-        </div>
+       
         <div class="mb-3">
 
             <label for="parent_name" class="form-label">Parent Name</label>
