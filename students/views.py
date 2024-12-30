@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
 from .models import Student
 from typing import Union, Optional
-
+from django.db.models import Q
 def index(request: HttpRequest) -> HttpResponse:
     students_data: list[Student] = Student.objects.all()  # Fetch all student records from the database
     return render(request, 'home.html', {'students': students_data})
@@ -78,4 +78,15 @@ def delete_data(request: HttpRequest, id: int) -> HttpResponse:
     return redirect('index')
 
 def search(request:HttpRequest)->HttpResponse:
-    return render(request,'search.html')
+    if request.method=="POST":
+        searched=request.POST['search']
+        obj=Student.objects.filter(
+            Q(first_name__icontains=searched)|
+            Q(last_name__icontains=searched) |
+            Q(email__icontains=searched) |
+            Q(parent_name__icontains=searched)|
+            Q(blood_group__icontains=searched)
+        )
+        return render(request,'search.html',{'students':obj})
+    else:
+        return render(request,'search.html')
