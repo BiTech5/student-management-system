@@ -90,3 +90,17 @@ def search(request:HttpRequest)->HttpResponse:
         return render(request,'search.html',{'students':obj})
     else:
         return render(request,'search.html')
+    
+def login(request:HttpRequest)->HttpResponse:
+    if request.method=="POST":
+        username:str=request.POST.get('username')
+        password:str=request.POST.get('password')
+        
+    return render(request,'authentication/login.html')
+
+
+def register(request:HttpRequest)->HttpResponse:
+    return render(request,'authentication/register.html')
+
+def logout(request:HttpRequest)->HttpResponse:
+    return redirect('login')
