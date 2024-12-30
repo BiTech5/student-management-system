@@ -5,5 +5,6 @@ urlpatterns = [
     path('add_students/', add_student, name='add_students'), 
     path('detail/<int:id>/', view_detail, name='detail'),
     path('edit_student/<int:id>/', edit_student, name='edit_student'), 
-    path('delete/<int:id>',delete_data,name='delete_data') # Added URL for editing student
+    path('delete/<int:id>',delete_data,name='delete_data') ,
+    path('search',search,name='search')
 ]

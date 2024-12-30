@@ -28,3 +28,4 @@ class Student(models.Model):
     
     class Meta:
         ordering = ['last_name', 'first_name']
+

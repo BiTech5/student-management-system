@@ -76,3 +76,6 @@ def delete_data(request: HttpRequest, id: int) -> HttpResponse:
     student: Student = Student.objects.get(id=id)
     student.delete()
     return redirect('index')
+
+def search(request:HttpRequest)->HttpResponse:
+    return render(request,'search.html')
