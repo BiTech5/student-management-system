@@ -13,7 +13,7 @@ class SemesterModel(models.Model):
     # sem_choice:int=[(i,{f" {i} Semester"}) for i in range(1,9)]
     numb = models.CharField(max_length=10,  unique=True)
 
-    # faculty:str=models.ForeignKey(FacultyModel,on_delete=models.CASCADE,related_name='semester')
+    faculty:str=models.ForeignKey(FacultyModel,on_delete=models.CASCADE,related_name='semester', default=1)
 
     def __str__(self):
         return self.numb

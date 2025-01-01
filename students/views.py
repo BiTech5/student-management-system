@@ -3,10 +3,28 @@ from django.http import HttpResponse, HttpRequest
 from .models import Student, FacultyModel, SemesterModel
 from typing import Union, Optional
 from django.db.models import Q
-
+import datetime
 def index(request: HttpRequest) -> HttpResponse:
-    students_data: list[Student] = Student.objects.all()  # Fetch all student records from the database
-    return render(request, 'home.html', {'students': students_data})
+    today = datetime.date.today()
+    total_students = Student.objects.count()
+    students_today = Student.objects.filter(
+        enrollment_date__year=today.year,
+        enrollment_date__month=today.month,
+        enrollment_date__day=today.day
+    ).count()
+    total_teachers = 2 
+    total_classes = 3   
+
+    recent_students = Student.objects.filter(enrollment_date=today)
+
+    context = {
+        'total_students': total_students,
+        'students_today': students_today,
+        'total_teachers': total_teachers,
+        'total_classes': total_classes,
+        'recent_students': recent_students,
+    }
+    return render(request, 'home.html', context)
 
 def add_student(request: HttpRequest) -> HttpResponse:
     semesters:str=SemesterModel.objects.all()
@@ -26,8 +44,8 @@ def add_student(request: HttpRequest) -> HttpResponse:
         photo: Optional[Union[bytes, str]] = request.FILES.get('photo')
         faculty:str=request.POST.get('faculty')
         semester:str=request.POST.get('semester')
-
-        # Create a new Student instance and save it to the database
+        faculty_instance:str = FacultyModel.objects.get(faculty=faculty)
+        semester_instance:str = SemesterModel.objects.get(numb=semester)
         new_student = Student(
             first_name=first_name,
             last_name=last_name,
@@ -41,8 +59,8 @@ def add_student(request: HttpRequest) -> HttpResponse:
             parent_phone=parent_phone,
             blood_group=blood_group,
             photo=photo,
-            faculty=faculty,
-            semester=semester
+            faculty=faculty_instance,
+            semester=semester_instance
         )
         new_student.save()
         return redirect('index')
@@ -53,6 +71,8 @@ def view_detail(request: HttpRequest, id: int) -> HttpResponse:
     return render(request, 'view_detail.html', {'student': student})
 
 def edit_student(request: HttpRequest, id: int) -> HttpResponse:
+    semesters:str=SemesterModel.objects.all()
+    facu:str=FacultyModel.objects.all()
     student: Student = Student.objects.get(id=id)
     dob: str = student.date_of_birth.strftime("%Y-%m-%d")
     
@@ -75,7 +95,7 @@ def edit_student(request: HttpRequest, id: int) -> HttpResponse:
         student.save()
         return redirect('detail', id=student.id)
     
-    return render(request, 'edit.html', {'student': student, 'dob': dob})
+    return render(request, 'edit.html', {'student': student, 'dob': dob,'semesters':semesters,'faculties':facu})
 
 def delete_data(request: HttpRequest, id: int) -> HttpResponse:
     student: Student = Student.objects.get(id=id)
@@ -110,5 +130,22 @@ def register(request:HttpRequest)->HttpResponse:
 def logout(request:HttpRequest)->HttpResponse:
     return redirect('login')
 
-def show_data(request:HttpRequest)->HttpResponse:
-    return render(request,'show_data.html')
+def show_data(request: HttpRequest) -> HttpResponse:
+    semesters = SemesterModel.objects.all()
+    faculties = FacultyModel.objects.all()
+
+    students = Student.objects.all()
+
+    if request.method == "POST":
+        faculty_name = request.POST.get('faculty')
+        semester_number = request.POST.get('semester')
+
+        if faculty_name:
+            faculty_instance = FacultyModel.objects.get(faculty=faculty_name)
+            students = students.filter(faculty=faculty_instance)
+
+        if semester_number:
+            semester_instance = SemesterModel.objects.get(numb=semester_number)
+            students = students.filter(semester=semester_instance)
+
+    return render(request, 'show_data.html', {'semesters': semesters, 'faculties': faculties, 'students': students})
