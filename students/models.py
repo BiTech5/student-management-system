@@ -1,6 +1,22 @@
 from django.db import models
-
 # Create your models here.
+
+
+#creating model for faculty
+class FacultyModel(models.Model):
+    faculty:str=models.CharField(max_length=100)
+    def __str__(self)->str:
+        return self.faculty
+
+
+class SemesterModel(models.Model):
+    # sem_choice:int=[(i,{f" {i} Semester"}) for i in range(1,9)]
+    numb = models.CharField(max_length=10,  unique=True)
+
+    # faculty:str=models.ForeignKey(FacultyModel,on_delete=models.CASCADE,related_name='semester')
+
+    def __str__(self):
+        return self.numb
 class Student(models.Model):
     first_name: str = models.CharField(max_length=100)
     last_name: str = models.CharField(max_length=100)
@@ -20,23 +36,9 @@ class Student(models.Model):
     parent_name: str = models.CharField(max_length=100)
     parent_phone: str = models.CharField(max_length=15)
     blood_group: str = models.CharField(max_length=5)
-    FACULTY_CHOICES:list[tuple[str:str]]  = [
-        ('BBA-BI', 'Bachelor of Business Administration in Banking and Insurance'),
-        ('BCSIT', 'Bachelor in Computer System and Information Technology'),
-        ('BBA', 'Bachelor of Business Administration'),
-    ]
-    SEMESTER_CHOICES:list[tuple[str:str]] = [
-        ('1', 'First Semester'),
-        ('2', 'Second Semester'),
-        ('3', 'Third Semester'),
-        ('4', 'Fourth Semester'),
-        ('5', 'Fifth Semester'),
-        ('6', 'Sixth Semester'),
-        ('7', 'Seventh Semester'),
-        ('8', 'Eighth Semester'),
-    ]
-    faculty: str = models.CharField(max_length=10, choices=FACULTY_CHOICES, default='BBA')
-    semester: str = models.CharField(max_length=1, choices=SEMESTER_CHOICES, default='1')
+    
+    faculty: str = models.ForeignKey(FacultyModel,on_delete=models.SET_NULL,null=True,blank=True,related_name="students")
+    semester: str = models.ForeignKey(SemesterModel,on_delete=models.SET_NULL,null=True,blank=True,related_name="students")
     photo= models.ImageField(upload_to='student_photos/', blank=True, null=True, editable=True)  
     
     def __str__(self) -> str:

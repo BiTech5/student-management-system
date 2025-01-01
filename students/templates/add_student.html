@@ -25,8 +25,8 @@
                     <label for="gender" class="form-label">Gender</label>
                     <select class="form-select" id="gender" name="gender" required>
                         <option value="" selected disabled hidden>---</option>
-                        <option value="M">Male</option>
-                        <option value="F">Female</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
                         <option value="O">Other</option>
                     </select>
                 </div>
@@ -34,23 +34,26 @@
                     <label for="faculty" class="form-label">Faculty</label>
                     <select class="form-select" id="faculty" name="faculty" required>
                         <option value="" selected disabled hidden>---</option>
-                        <option value="BBA-BI">BBA-BI</option>
-                        <option value="BCSIT">BCSIT</option>
-                        <option value="BBA">BBA</option>
+                        {% if faculties %}
+                        {% for faculty in faculties %}
+                        <option value="{{ faculty }}">
+                            {{ faculty }}
+                        </option>
+                        {% endfor %}
+                        {% endif %}
                     </select>
                 </div>
                 <div class="mb-3">
                     <label for="semester" class="form-label">Semester</label>
                     <select class="form-select" id="semester" name="semester" required>
                         <option value="" selected disabled hidden>---</option>
-                        <option value="1">First</option>
-                        <option value="2">Second</option>
-                        <option value="3">Third</option>
-                        <option value="4">Fourth</option>
-                        <option value="5">Fifth</option>
-                        <option value="6">Sixth</option>
-                        <option value="7">Seventh</option>
-                        <option value="8">Eigth</option>
+                        {% if semesters %}
+                        {% for semester in semesters %}
+                        <option value="{{ semester }}">
+                            {{ semester }}
+                        </option>
+                        {% endfor %}
+                        {% endif %}
                     </select>
                 </div>
                 <div class="mb-3">

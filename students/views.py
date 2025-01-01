@@ -1,13 +1,16 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
-from .models import Student
+from .models import Student, FacultyModel, SemesterModel
 from typing import Union, Optional
 from django.db.models import Q
+
 def index(request: HttpRequest) -> HttpResponse:
     students_data: list[Student] = Student.objects.all()  # Fetch all student records from the database
     return render(request, 'home.html', {'students': students_data})
 
 def add_student(request: HttpRequest) -> HttpResponse:
+    semesters:str=SemesterModel.objects.all()
+    facu:str=FacultyModel.objects.all()
     if request.method == "POST":
         first_name: str = request.POST.get('first_name', '')
         last_name: str = request.POST.get('last_name', '')
@@ -17,7 +20,6 @@ def add_student(request: HttpRequest) -> HttpResponse:
         email: str = request.POST.get('email', '')
         phone_number: str = request.POST.get('phone_number', '')
         address: str = request.POST.get('address', '')
-        grade_level: int = int(request.POST.get('grade_level', 0))
         parent_name: str = request.POST.get('parent_name', '')
         parent_phone: str = request.POST.get('parent_phone', '')
         blood_group: str = request.POST.get('blood_group', '')
@@ -35,7 +37,6 @@ def add_student(request: HttpRequest) -> HttpResponse:
             email=email,
             phone_number=phone_number,
             address=address,
-            grade_level=grade_level,
             parent_name=parent_name,
             parent_phone=parent_phone,
             blood_group=blood_group,
@@ -45,7 +46,7 @@ def add_student(request: HttpRequest) -> HttpResponse:
         )
         new_student.save()
         return redirect('index')
-    return render(request, 'add_student.html')
+    return render(request, 'add_student.html',{'semesters':semesters,'faculties':facu})
 
 def view_detail(request: HttpRequest, id: int) -> HttpResponse:
     student: Student = Student.objects.get(id=id)  
@@ -108,3 +109,6 @@ def register(request:HttpRequest)->HttpResponse:
 
 def logout(request:HttpRequest)->HttpResponse:
     return redirect('login')
+
+def show_data(request:HttpRequest)->HttpResponse:
+    return render(request,'show_data.html')

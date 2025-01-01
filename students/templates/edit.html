@@ -34,10 +34,11 @@
         <div class="mb-3">
             <label for="gender" class="form-label">Gender</label>
             <select class="form-select" id="gender" name="gender" required>
-                <option {% if student.gender == 'M' %}selected{% endif %}value="Male">Male</option>
-                <option {% if student.gender == 'F' %}selected{% endif %}value="FeMale">Female</option>
-                <option {% if student.gender == 'O' %}selected{% endif %}value="Other">Other</option>
+                <option value="Male" {% if student.gender == 'M' %}selected{% endif %}>Male</option>
+                <option value="Female" {% if student.gender == 'F' %}selected{% endif %}>Female</option>
+                <option value="Other" {% if student.gender == 'O' %}selected{% endif %}>Other</option>
             </select>
+            
         </div>
         <div class="mb-3">
             <label for="faculty" class="form-label">Faculty</label>

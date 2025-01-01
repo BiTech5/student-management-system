@@ -28,8 +28,16 @@
                     <input type="text" class="form-control" id="roll_number" value="{{ student.roll_number }}" readonly>
                 </div>
                 <div class="mb-3">
+                    <label for="faculty" class="form-label">Faculty</label>
+                    <input type="text" class="form-control" id="faculty" value="{{ student.faculty }}" readonly>
+                </div>
+                <div class="mb-3">
+                    <label for="semester" class="form-label">Semester</label>
+                    <input type="text" class="form-control" id="faculty" value="{{ student.semester }}" readonly>
+                </div>
+                <div class="mb-3">
                     <label for="gender" class="form-label">Gender</label>
-                    <input type="text" class="form-control" id="gender" value="{{ student.get_gender_display }}" readonly>
+                    <input type="text" class="form-control" id="gender" value="{{ student.gender }}" readonly>
                 </div>
                 <div class="mb-3">
                     <label for="date_of_birth" class="form-label">Date of Birth</label>
