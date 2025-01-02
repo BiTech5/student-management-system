@@ -1,5 +1,6 @@
 from django.db import models
 # Create your models here.
+from django.utils.timezone import now
 
 
 #creating model for faculty
@@ -47,3 +48,9 @@ class Student(models.Model):
     class Meta:
         ordering = ['last_name', 'first_name']
 
+class AttendanceModel(models.Model):
+    student:str=models.ForeignKey(Student,on_delete=models.CASCADE,related_name='attendaces')
+    faculty: str = models.ForeignKey(FacultyModel,on_delete=models.CASCADE)
+    semester: str = models.ForeignKey(SemesterModel,on_delete=models.CASCADE)
+    date:models.DateField=models.DateField(default=now)
+    is_present:bool=models.BooleanField(default=True)

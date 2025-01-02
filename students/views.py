@@ -149,3 +149,21 @@ def show_data(request: HttpRequest) -> HttpResponse:
             students = students.filter(semester=semester_instance)
 
     return render(request, 'show_data.html', {'semesters': semesters, 'faculties': faculties, 'students': students})
+
+
+def attendance(request:HttpRequest)->HttpResponse:
+    semesters = SemesterModel.objects.all()
+    faculties = FacultyModel.objects.all()
+    students = Student.objects.all()
+    if request.method == "POST":
+        faculty_name = request.POST.get('faculty')
+        semester_number = request.POST.get('semester')
+
+        if faculty_name:
+            faculty_instance = FacultyModel.objects.get(faculty=faculty_name)
+            students = students.filter(faculty=faculty_instance)
+
+        if semester_number:
+            semester_instance = SemesterModel.objects.get(numb=semester_number)
+            students = students.filter(semester=semester_instance)
+    return render(request,'attendance.html',{'semesters': semesters, 'faculties': faculties, 'students': students})
