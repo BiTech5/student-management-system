@@ -3,7 +3,11 @@ from django.http import HttpResponse, HttpRequest
 from .models import Student, FacultyModel, SemesterModel
 from typing import Union, Optional
 from django.db.models import Q
+from django.contrib import auth
+from django.contrib.auth.models import User
 import datetime
+from django.contrib.auth.decorators import login_required
+@login_required(login_url='login')
 def index(request: HttpRequest) -> HttpResponse:
     today = datetime.date.today()
     total_students = Student.objects.count()
@@ -25,7 +29,7 @@ def index(request: HttpRequest) -> HttpResponse:
         'recent_students': recent_students,
     }
     return render(request, 'home.html', context)
-
+@login_required(login_url='login')
 def add_student(request: HttpRequest) -> HttpResponse:
     semesters:str=SemesterModel.objects.all()
     facu:str=FacultyModel.objects.all()
@@ -65,11 +69,11 @@ def add_student(request: HttpRequest) -> HttpResponse:
         new_student.save()
         return redirect('index')
     return render(request, 'add_student.html',{'semesters':semesters,'faculties':facu})
-
+@login_required(login_url='login')
 def view_detail(request: HttpRequest, id: int) -> HttpResponse:
     student: Student = Student.objects.get(id=id)  
     return render(request, 'view_detail.html', {'student': student})
-
+@login_required(login_url='login')
 def edit_student(request: HttpRequest, id: int) -> HttpResponse:
     semesters:str=SemesterModel.objects.all()
     facu:str=FacultyModel.objects.all()
@@ -96,12 +100,12 @@ def edit_student(request: HttpRequest, id: int) -> HttpResponse:
         return redirect('detail', id=student.id)
     
     return render(request, 'edit.html', {'student': student, 'dob': dob,'semesters':semesters,'faculties':facu})
-
+@login_required(login_url='login')
 def delete_data(request: HttpRequest, id: int) -> HttpResponse:
     student: Student = Student.objects.get(id=id)
     student.delete()
     return redirect('index')
-
+@login_required(login_url='login')
 def search(request:HttpRequest)->HttpResponse:
     if request.method=="POST":
         searched=request.POST['search']
@@ -120,16 +124,32 @@ def login(request:HttpRequest)->HttpResponse:
     if request.method=="POST":
         username:str=request.POST.get('username')
         password:str=request.POST.get('password')
-        
+        user=auth.authenticate(request,username=username,password=password)
+        if user is not None:
+            auth.login(request,user)
+            return redirect('index')
+        print(f"{username=},{password=}")
     return render(request,'login.html')
 
 
 def register(request:HttpRequest)->HttpResponse:
+    if request.method=="POST":
+        name:str=request.POST.get('name')
+        username:str=request.POST.get('username')
+        password:str=request.POST.get('password')
+        email:str=request.POST.get('email')
+        role:str=request.POST.get('role')
+        phone_number:str=request.POST.get('phone_number')
+        address:str=request.POST.get('address')
+        user=User.objects.create_user(name=name,username=username,password=password,email=email)
+        user.save()
+        return redirect('login')
     return render(request,'register.html')
 
 def logout(request:HttpRequest)->HttpResponse:
+    auth.logout(request)
     return redirect('login')
-
+@login_required(login_url='login')
 def show_data(request: HttpRequest) -> HttpResponse:
     semesters = SemesterModel.objects.all()
     faculties = FacultyModel.objects.all()
@@ -150,7 +170,7 @@ def show_data(request: HttpRequest) -> HttpResponse:
 
     return render(request, 'show_data.html', {'semesters': semesters, 'faculties': faculties, 'students': students})
 
-
+@login_required(login_url='login')
 def attendance(request:HttpRequest)->HttpResponse:
     semesters = SemesterModel.objects.all()
     faculties = FacultyModel.objects.all()
