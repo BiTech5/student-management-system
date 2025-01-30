@@ -98,7 +98,9 @@
 
     
     {% else %}
-        <p>No students found for the selected faculty and semester.</p>
+    <div class="alert alert-warning" role="alert">
+        No students found for the selected faculty and semester.
+    </div>
     {% endif %}
 </div>
 {% endblock %}
