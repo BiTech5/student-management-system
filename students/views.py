@@ -121,11 +121,11 @@ def login(request:HttpRequest)->HttpResponse:
         username:str=request.POST.get('username')
         password:str=request.POST.get('password')
         
-    return render(request,'authentication/login.html')
+    return render(request,'login.html')
 
 
 def register(request:HttpRequest)->HttpResponse:
-    return render(request,'authentication/register.html')
+    return render(request,'register.html')
 
 def logout(request:HttpRequest)->HttpResponse:
     return redirect('login')
