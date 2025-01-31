@@ -1,63 +1,65 @@
 {% include 'base.html' %}
 {% block content %}
-    <div class="container mt-5">
-        <!-- Greeting Section -->
-        <div class="text-center mb-4">
-            <h1>Welcome to the School Management System</h1>
-            <p class="text-muted">"Empowering education through technology."</p>
-        </div>
+<br><br>
+<div class="content" id="content">
+    <!-- Greeting Section -->
+    <div class="text-center mb-4">
+        <h1>Welcome to the School Management System</h1>
+        <p class="text-muted">"Empowering education through technology."</p>
+    </div>
 
-        <!-- Quick Stats Section -->
-        <div class="row mb-4">
-            <div class="col-md-3">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">Total Students</h5>
-                        <p class="card-text display-6">{{ total_students }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">Students Added Today</h5>
-                        <p class="card-text display-6">{{ students_today }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">Total Teachers</h5>
-                        <p class="card-text display-6">{{ total_teachers }}</p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <h5 class="card-title">Active Classes</h5>
-                        <p class="card-text display-6">{{ total_classes }}</p>
-                    </div>
+    <!-- Quick Stats Section -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Total Students</h5>
+                    <p class="card-text display-6">{{ total_students }}</p>
                 </div>
             </div>
         </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Students Added Today</h5>
+                    <p class="card-text display-6">{{ students_today }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Total Teachers</h5>
+                    <p class="card-text display-6">{{ total_teachers }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-center">
+                <div class="card-body">
+                    <h5 class="card-title">Active Classes</h5>
+                    <p class="card-text display-6">{{ total_classes }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <!-- Recent Activity Section -->
-        <div class="mb-4">
-            <h3>Recent Added Students</h3>
-            <ul class="list-group">
-                {% if recent_students %}
-                {% for student in recent_students %}
-                <li class="list-group-item d-flex justify-content-between align-items-center">
-                    {{ student.first_name }} {{ student.last_name }}
-                    <span class="badge bg-primary rounded-pill">{{ student.enrollment_date }}</span>
-                </li>
-                {% endfor %}
-                {% else %}
-                <p>No Recent Activities</p>
-                {% endif %}
-            </ul>
-        </div>
+    <!-- Recent Activity Section -->
+    <div class="mb-4">
+        <h3>Recent Added Students</h3>
+        <ul class="list-group">
+            {% if recent_students %}
+            {% for student in recent_students %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ student.first_name }} {{ student.last_name }}
+                <span class="badge bg-primary rounded-pill">{{ student.enrollment_date }}</span>
+            </li>
+            {% endfor %}
+            {% else %}
+            <p>No Recent Activities</p>
+            {% endif %}
+        </ul>
+    </div>
+</div>
 
 {% endblock %}
