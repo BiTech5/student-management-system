@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpRequest
-from .models import Student, FacultyModel, SemesterModel
+from .models import Student, FacultyModel, SemesterModel, TeacherProfile
 from typing import Union, Optional
 from django.db.models import Q
 from django.contrib import auth
@@ -187,3 +187,39 @@ def attendance(request:HttpRequest)->HttpResponse:
             semester_instance = SemesterModel.objects.get(numb=semester_number)
             students = students.filter(semester=semester_instance)
     return render(request,'attendance.html',{'semesters': semesters, 'faculties': faculties, 'students': students})
+
+@login_required(login_url='/login')
+def teacher_profile_list(request):
+    profiles = TeacherProfile.objects.all()
+    return render(request, 'teacher_profile_list.html', {'profiles': profiles})
+
+@login_required(login_url='/login')
+def teacher_profile_detail(request, pk):
+    profile = TeacherProfile.objects.get(pk=pk)
+    return render(request, 'teacher_profile_detail.html', {'profile': profile})
+
+@login_required
+def teacher_profile_create(request):
+    semesters:str=SemesterModel.objects.all()
+    facu:str=FacultyModel.objects.all()
+    if request.method == "POST":
+        name:str=request.POST.get('name')
+        username:str=request.POST.get('username')
+        password:str=request.POST.get('password')
+        designation:str=request.POST.get('designation')
+        qualification:str=request.POST.get('qualification')
+        faculty:str=request.POST.get('faculty')
+        semester:str=request.POST.get('semester')
+        faculty_instance:str = FacultyModel.objects.get(faculty=faculty)
+        photo: Optional[Union[bytes, str]] = request.FILES.get('photo')
+        new_teacher:list[str:str] = TeacherProfile(
+            name=name,
+            user=User.objects.create_user(name=name,username=username,password=password),
+            designation=designation,
+            qualification=qualification,
+            faculty=faculty_instance,
+            photo=photo
+        )
+        new_teacher.save()
+
+    return render(request, 'teacher_add_form.html',{'semesters':semesters,'faculties':facu})
