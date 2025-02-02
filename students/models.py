@@ -70,6 +70,7 @@ class TeacherProfile(models.Model):
     user: User = models.OneToOneField(User, on_delete=models.CASCADE, related_name='teacher_profile')
     faculty: FacultyModel = models.ForeignKey(FacultyModel, on_delete=models.SET_NULL, null=True, blank=True)
     designation: str = models.CharField(max_length=100)
+    subject:str=models.CharField(max_length=100,blank=True)
     qualifications: str = models.TextField(blank=True)
     joining_date: models.DateField = models.DateField(auto_now_add=True)
     photo: models.ImageField = models.ImageField(upload_to='teacher_photos/', blank=True, null=True)

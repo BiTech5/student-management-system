@@ -168,7 +168,7 @@ def show_data(request: HttpRequest) -> HttpResponse:
             semester_instance = SemesterModel.objects.get(numb=semester_number)
             students = students.filter(semester=semester_instance)
 
-    return render(request, 'show_data.html', {'semesters': semesters, 'faculties': faculties, 'students': students})
+    return render(request, 'student_show_data.html', {'semesters': semesters, 'faculties': faculties, 'students': students})
 
 @login_required(login_url='/login')
 def attendance(request:HttpRequest)->HttpResponse:
@@ -205,11 +205,11 @@ def teacher_profile_create(request):
     if request.method == "POST":
         name:str=request.POST.get('name')
         username:str=request.POST.get('username')
+        subject:str=request.POST.get('subject')
         password:str=request.POST.get('password')
         designation:str=request.POST.get('designation')
         qualification:str=request.POST.get('qualification')
         faculty:str=request.POST.get('faculty')
-        semester:str=request.POST.get('semester')
         faculty_instance:str = FacultyModel.objects.get(faculty=faculty)
         photo: Optional[Union[bytes, str]] = request.FILES.get('photo')
         new_teacher:list[str:str] = TeacherProfile(
@@ -218,7 +218,8 @@ def teacher_profile_create(request):
             designation=designation,
             qualification=qualification,
             faculty=faculty_instance,
-            photo=photo
+            photo=photo,
+            subject=subject
         )
         new_teacher.save()
 

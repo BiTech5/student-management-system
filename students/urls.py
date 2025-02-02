@@ -13,5 +13,6 @@ urlpatterns = [
     path('show_data',show_data,name='show_data'),
     path('attendance',attendance,name='attendance'),
     path('add_teacher',teacher_profile_create,name='add_teacher'),
-
+    path('teacher_deatil/<int:id>',teacher_profile_list,name='teacher_detail'),
+    path('teacher_list',teacher_profile_list,name='teacher_list'),
 ]

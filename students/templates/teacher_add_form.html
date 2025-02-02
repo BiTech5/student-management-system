@@ -1,59 +1,71 @@
 {% extends 'base.html' %}
-
 {% block content %}
-<div class="container mt-5">
-    <h1>Add New Teacher</h1>
-    <form method="post" enctype="multipart/form-data">
+<br><br>
+<div class="content" id="content">
+    <a class="btn btn-primary" href="{% url 'index' %}" role="button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+            <path fill-rule="evenodd"
+                d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8" />
+        </svg>
+        Back
+    </a>
+    <h1 class="text-center">Add Teacher</h1>
+    <form method="POST" enctype="multipart/form-data">
         {% csrf_token %}
-        <div class="row">
-            <!-- First Name -->
-            <div class="col-md-6 mb-3">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" class="form-control" id="name" name="name" required>
-            </div>
-
-            <!-- Last Name -->
-            <div class="col-md-6 mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" class="form-control" id="username" name="username" required>
-            </div>
+        <div class="mb-3">
+            <label for="name" class="form-label">Name</label>
+            <input type="text" class="form-control" id="name" name="name" required>
         </div>
-
-        <div class="row">
-            <!-- Designation -->
-            <div class="col-md-6 mb-3">
-                <label for="designation" class="form-label">Designation</label>
-                <input type="text" class="form-control" id="designation" name="designation" required>
-            </div>
-
-            <!--Qualification -->
-            <div class="col-md-6 mb-3">
-                <label for="qualifications" class="form-label">Office Room</label>
-                <input type="text" class="form-control" id="qualifications" name="qualifications" required>
-            </div>
+        <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            <input type="text" class="form-control" id="username" name="username" required>
         </div>
-
-        <div class="row">
-            <!-- Faculty -->
-            <div class="col-md-6 mb-3">
-                <label for="faculty" class="form-label">Faculty</label>
-                <select class="form-select" id="faculty" name="faculty" required>
-                    <option value="">Select Faculty</option>
-                    {% for faculty in faculties %}
-                    <option value="{{ faculty.id }}">{{ faculty.name }}</option>
-                    {% endfor %}
-                </select>
-            </div>
-            <!-- Photo -->
-            <div class="col-md-6 mb-3">
-                <label for="photo" class="form-label">Photo</label>
-                <input type="file" class="form-control" id="photo" name="photo">
-            </div>
+        <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            <input type="password" class="form-control" id="password" name="password" required>
         </div>
-
-        <!-- Submit Button -->
-        <button type="submit" class="btn btn-primary">Add Teacher</button>
-        <a href="{% url 'index' %}" class="btn btn-secondary">Cancel</a>
+        <div class="mb-3">
+            <label for="subject" class="form-label">Subject</label>
+            <input type="text" class="form-control" id="subject" name="subject" required>
+        </div>
+        <div class="mb-3">
+            <label for="designation" class="form-label">Designation</label>
+            <input type="text" class="form-control" id="designation" name="designation" required>
+        </div>
+        <div class="mb-3">
+            <label for="qualifications" class="form-label">Qualifications</label>
+            <input type="text" class="form-control" id="qualifications" name="qualifications" required>
+        </div>
+        <div class="mb-3">
+            <label for="faculty" class="form-label">Faculty</label>
+            <select class="form-select" id="faculty" name="faculty" required>
+                <option value="" selected disabled hidden>---</option>
+                {% if faculties %}
+                {% for faculty in faculties %}
+                <option value="{{ faculty }}">
+                    {{ faculty }}
+                </option>
+                {% endfor %}
+                {% endif %}
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <div class="mb-3">
+            <label for="phone_number" class="form-label">Phone Number</label>
+            <input type="text" class="form-control" id="phone_number" name="phone_number" required>
+        </div>
+        <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea class="form-control" id="address" name="address" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="photo" class="form-label">Photo</label>
+            <input type="file" class="form-control" id="photo" name="photo">
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Add Teacher</button>
     </form>
 </div>
 {% endblock %}
