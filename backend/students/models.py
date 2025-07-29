@@ -10,3 +10,13 @@ class Person(models.Model):
 
     class Meta:
         abstract = True
+
+
+# studen model
+class Student(Person):
+    roll_number = models.CharField(max_length=20, unique=True)
+    enrollment_date = models.DateField()
+    course = models.ForeignKey('Course', on_delete=models.SET_NULL, null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.first_name} {self.last_name} ({self.roll_number})"
