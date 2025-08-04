@@ -7,7 +7,7 @@ import { IoLibrarySharp } from "react-icons/io5";
 import { GrSchedules } from "react-icons/gr";
 import { PiExamFill } from "react-icons/pi";
 import { useContext } from "react";
-import { SideBarContext } from "../Context/SideBarContext";
+import { SideBarContext } from "../../Context/SideBarContext";
 const menuItems = [
     { icons: <IoHomeSharp/>, label: 'Dashboard' },
     { icons:<PiStudentFill/>, label: 'Students' },
