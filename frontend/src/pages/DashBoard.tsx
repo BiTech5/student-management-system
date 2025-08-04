@@ -6,7 +6,7 @@ export const DashBoard: React.FC = () => {
     const { isOpen } = useContext(SideBarContext);
     return (
         <>
-            <div className={` bg-gray-100 w-full p-10`}>
+            <div className={` bg-gray-100 w-full p-10 overflow-y-auto flex-1`}>
                 <div className="flex gap-3">
                     <div className={`bg-blue-600 duration-500 ${isOpen ? `w-85 h-35` : `w-95 h-40`} rounded-2xl grid place-items-center p-8`}>
                         <h1 className="text-4xl  font-bold">12</h1>

@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-white flex">
+      <div className="h-screen bg-white flex overflow-hidden">
         <SideBarProvider>
           <SideBar />
           <DashBoard />
