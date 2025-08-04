@@ -1,10 +1,9 @@
-import './App.css'
-
+import { DashBoard } from "./pages/DashBoard";
 function App() {
 
   return (
     <>
-      <h1>Hello World</h1>
+      <DashBoard />
     </>
   )
 }
