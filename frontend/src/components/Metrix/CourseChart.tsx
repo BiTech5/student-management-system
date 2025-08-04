@@ -37,7 +37,7 @@ const options = {
 export const CourseChart: React.FC = () => {
     return (
         <>
-            <div className="shadow-md rounded-md bg-white  flex justify-center items-center flex-col h-100 p-10 w-150 mt-10 ">
+            <div className="shadow-lg rounded-2xl bg-white  flex justify-center items-center flex-col h-100 p-10 w-150 mt-10 ">
                 <h1 className="text-gray-700 text-2xl font-bold">Course Overview</h1>
                 <Doughnut data={data} options={options} />
             </div>
