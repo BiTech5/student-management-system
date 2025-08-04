@@ -1,9 +1,14 @@
 import { DashBoard } from "./pages/DashBoard";
+import { SideBar } from "./components/SideBar";
 function App() {
 
   return (
     <>
-      <DashBoard />
+      <div className="bg-white">
+
+        <SideBar />
+        <DashBoard />
+      </div>
     </>
   )
 }
