@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <div className="bg-white">
+      <div className="bg-white flex">
         <SideBarProvider>
           <SideBar />
           <DashBoard />
