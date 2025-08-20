@@ -17,7 +17,7 @@ export const DashBoard: React.FC = () => {
                         <IoPerson className="text-white text-6xl" />
                         <div className="text-center">
                             <h1 className="text-4xl font-bold text-white">12</h1>
-                            <p className="text-xl font-bold text-white">Total Student</p>
+                            <p className={`${isOpen ? 'text-xl' : 'text-3xl'} 'font-bold duration-500 '`}>Total Student</p>
                         </div>
                     </div>
 
@@ -27,7 +27,7 @@ export const DashBoard: React.FC = () => {
                         <div className="text-center">
 
                             <h1 className="text-4xl  font-bold">12</h1>
-                            <p className="text-xl font-bold">
+                            <p className={`${isOpen ? 'text-xl' : 'text-3xl'} 'font-bold duration-500 '`}>
                                 Total Courses
                             </p>
                         </div>
@@ -38,7 +38,7 @@ export const DashBoard: React.FC = () => {
                         <div className="text-center">
 
                             <h1 className="text-4xl  font-bold">12</h1>
-                            <p className="text-xl font-bold">
+                            <p className={`${isOpen ? 'text-xl' : 'text-3xl'} 'font-bold duration-500 '`}>
                                 Total Teachers
                             </p>
                         </div>
