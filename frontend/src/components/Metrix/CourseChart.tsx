@@ -6,6 +6,8 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
+import { useContext } from "react";
+import { SideBarContext } from "../../Context/SideBarContext";
 
 // Register chart components
 ChartJS.register(ArcElement, Tooltip, Legend);
@@ -26,6 +28,7 @@ const data = {
         hoverOffset: 4
     }]
 };
+
 const options = {
     responsive: true,
     plugins: {
@@ -34,10 +37,12 @@ const options = {
         },
     },
 };
+
 export const CourseChart: React.FC = () => {
+    const { isOpen } = useContext(SideBarContext);
     return (
         <>
-            <div className="shadow-lg rounded-2xl bg-white  flex justify-center items-center flex-col h-100 p-10 w-150 mt-10 ">
+            <div className={`shadow-lg rounded-2xl bg-white  flex justify-center items-center flex-col h-100 p-10 ${isOpen?'w-150':'w-170'} mt-10 duration-500`}>
                 <h1 className="text-gray-700 text-2xl font-bold">Course Overview</h1>
                 <Doughnut data={data} options={options} />
             </div>

@@ -29,7 +29,7 @@ export const DashBoard: React.FC = () => {
                 </div>
                 <div className={`flex gap-20`}>
                     <CourseChart />
-                    <div className="shadow-lg rounded-2xl bg-white  h-100 mt-10 w-70">
+                    <div className={`duration-500 shadow-lg rounded-2xl bg-white  h-100 mt-10  ${isOpen ?`w-70`:`w-80`}`}>
                         <h1 className="text-center text-2xl m-5 font-bold text-gray-900">Student List</h1>
                         <table className="w-full text-center">
                             <thead className=" text-gray-800">
