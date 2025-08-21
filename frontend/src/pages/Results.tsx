@@ -1,5 +1,6 @@
-export const Results=()=>{
+const Results=()=>{
     return (
         <>Result Page</>
     )
 }
+export default Results;

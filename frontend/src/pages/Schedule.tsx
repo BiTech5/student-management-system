@@ -1,5 +1,6 @@
-export const Schedule=()=>{
+const Schedule=()=>{
     return (
         <>Schdeule Page</>
     )
 }
+export default Schedule;

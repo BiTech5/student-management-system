@@ -6,7 +6,7 @@ import { IoPerson, IoBookSharp } from "react-icons/io5";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { AttenceTend } from "../components/Metrix/AttendenceTend";
 
-export const DashBoard: React.FC = () => {
+const DashBoard: React.FC = () => {
     const { isOpen } = useContext(SideBarContext);
     return (
         <>
@@ -136,3 +136,4 @@ export const DashBoard: React.FC = () => {
         </>
     );
 }
+export default DashBoard;
