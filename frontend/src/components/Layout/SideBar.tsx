@@ -10,12 +10,12 @@ import { useContext } from "react";
 import { SideBarContext } from "../../Context/SideBarContext";
 import { NavLink } from "react-router-dom";
 const menuItems = [
-    { icons: <IoHomeSharp />, label: 'Dashboard',slug:'/' },
-    { icons: <PiStudentFill />, label: 'Students',slug:'/students' },
-    { icons: <FaUserGroup />, label: 'Teachers',slug:'/teachers' },
-    { icons: <IoLibrarySharp />, label: 'Courses',slug:'/courses' },
-    { icons: <GrSchedules />, label: 'Schedule',slug:'/schedule' },
-    { icons: <PiExamFill />, label: 'Results',slug:'/results' }
+    { icons: <IoHomeSharp />, label: 'Dashboard', slug: '/' },
+    { icons: <PiStudentFill />, label: 'Students', slug: '/students' },
+    { icons: <FaUserGroup />, label: 'Teachers', slug: '/teachers' },
+    { icons: <IoLibrarySharp />, label: 'Courses', slug: '/courses' },
+    { icons: <GrSchedules />, label: 'Schedule', slug: '/schedule' },
+    { icons: <PiExamFill />, label: 'Results', slug: '/results' }
 ];
 
 export const SideBar: React.FC = () => {
@@ -29,8 +29,15 @@ export const SideBar: React.FC = () => {
                 </div>
                 <ul>
                     {menuItems.map((item, index) => (
-                        <li key={index} className="py-2 px-4 hover:bg-blue-400 cursor-pointer rounded">
-                            <NavLink to={item.slug} className={'flex justify-between items-center text-xl'}>
+                        <li key={index} className="pb-1">
+                            <NavLink
+                                to={item.slug}
+                                className={({ isActive }) =>
+                                    `py-2 px-4 cursor-pointer rounded flex justify-between items-center text-xl 
+     hover:bg-blue-400/50  
+     ${isActive ? "bg-blue-400 font-semibold " : ""}`
+                                }
+                            >
                                 <p className={`${!isOpen && 'w-0 translate-x24'} duration-500 overflow-hidden`}>{item.label}</p>
 
                                 {item.icons && <span className=" text-2xl">{item.icons}</span>}
