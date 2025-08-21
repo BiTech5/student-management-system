@@ -5,7 +5,6 @@ import { CourseChart } from "../components/Metrix/CourseChart";
 import { IoPerson, IoBookSharp } from "react-icons/io5";
 import { FaChalkboardTeacher } from "react-icons/fa";
 import { AttenceTend } from "../components/Metrix/AttendenceTend";
-
 const DashBoard: React.FC = () => {
     const { isOpen } = useContext(SideBarContext);
     return (

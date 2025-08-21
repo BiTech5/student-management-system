@@ -8,7 +8,7 @@ const Students = lazy(() => import('./pages/Students'));
 const Schedule = lazy(() => import('./pages/Schedule'));
 const Results = lazy(() => import('./pages/Results'));
 const Courses = lazy(() => import('./pages/Courses'));
-
+import Loading from './components/Loading/Loading';
 function Layout() {
   return (
     <div className="h-screen bg-white flex overflow-hidden">
@@ -22,7 +22,7 @@ function Layout() {
 
 function App() {
   return (
-      <Suspense fallback={<div>Loading...</div>}>
+      <Suspense fallback={<Loading/>}>
         <Routes>
           <Route element={<Layout />}>
             <Route path="/" element={<DashBoard />} />
