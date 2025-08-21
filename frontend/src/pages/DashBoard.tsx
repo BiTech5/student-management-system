@@ -4,6 +4,8 @@ import { SideBarContext } from "../Context/SideBarContext";
 import { CourseChart } from "../components/Metrix/CourseChart";
 import { IoPerson, IoBookSharp } from "react-icons/io5";
 import { FaChalkboardTeacher } from "react-icons/fa";
+import { AttenceTend } from "../components/Metrix/AttendenceTend";
+
 export const DashBoard: React.FC = () => {
     const { isOpen } = useContext(SideBarContext);
     return (
@@ -46,6 +48,41 @@ export const DashBoard: React.FC = () => {
                 </div>
                 <div className={`flex gap-20`}>
                     <CourseChart />
+                    <div className={`duration-500 shadow-lg rounded-2xl bg-white  h-100 mt-10  ${isOpen ? `w-70` : `w-80`}`}>
+                        <h1 className="text-center text-2xl m-5 font-bold text-gray-900">Student List</h1>
+                        <table className="w-full text-center">
+                            <thead className=" text-gray-800">
+                                <tr>
+                                    <th className="px-4 py-2 border-t-1 border-b-1 border-gray-400">Name</th>
+                                    <th className="px-4 py-2 border-t-1 border-b-1 border-gray-400">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody className="text-gray-600">
+                                <tr className="hover:bg-gray-100">
+                                    <td className=" p-3 py-2border-t-1 border-b-1 border-gray-400">Student</td>
+                                    <td className=" p-3 py-2border-t-1 border-b-1 border-gray-400">hello@world.com</td>
+                                </tr>
+                                <tr className="hover:bg-gray-100">
+                                    <td className=" p-3 py-2border-t-1 border-b-1 border-gray-400">Student</td>
+                                    <td className=" p-3 py-2border-t-1 border-b-1 border-gray-400">Student</td>
+                                </tr>
+                                <tr className="hover:bg-gray-100">
+                                    <td className=" p-3 py-2border-t-1 border-b-1 border-gray-400">Student</td>
+                                    <td className=" p-3 py-2border-t-1 border-b-1 border-gray-400">Student</td>
+                                </tr>
+                                <tr className="hover:bg-gray-100">
+                                    <td className=" p-3 py-2border-t-1 border-b-1 border-gray-400">Student</td>
+                                    <td className=" p-3 py-2border-t-1 border-b-1 border-gray-400">Student</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div className="flex justify-end m-4">
+                            <button className="text-blue-600 cursor-pointer">View All</button>
+                        </div>
+                    </div>
+                </div>
+                <div className={`flex gap-20`}>
+                    <AttenceTend />
                     <div className={`duration-500 shadow-lg rounded-2xl bg-white  h-100 mt-10  ${isOpen ? `w-70` : `w-80`}`}>
                         <h1 className="text-center text-2xl m-5 font-bold text-gray-900">Student List</h1>
                         <table className="w-full text-center">
