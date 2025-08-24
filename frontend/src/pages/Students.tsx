@@ -1,7 +1,8 @@
+import { SearchBar } from "../components/Layout/SearchBar";
 const Students=()=>{
     return(
         <>
-        Student Page
+        <SearchBar/>
         </>
     )
 }
