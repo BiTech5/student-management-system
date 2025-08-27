@@ -1,11 +1,12 @@
-// import { useContext } from "react";
-// import { SideBarContext } from "../../Context/SideBarContext";
+import { useContext } from "react";
+import { SideBarContext } from "../../Context/SideBarContext";
 export const SearchBar = () => {
-    // const { isOpen } = useContext(SideBarContext);
+    const { isOpen } = useContext(SideBarContext);
 
     return (
         <div className="w-full h-fit p-4 bg-blue-500 border-l flex justify-center items-center">
-            <label className="input bg-gray-200 text-black flex items-center gap-2 rounded-lg px-3 py-2 ">
+            <label className={` ${isOpen?'':'w-120'} duration-500 input bg-white
+             text-black flex items-center gap-2 rounded-lg px-3 py-2 `}>
                 <svg
                     className="h-[1em] opacity-50"
                     xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +27,7 @@ export const SearchBar = () => {
                     type="search"
                     required
                     placeholder="Search"
-                    className="bg-transparent"
+                    className={`bg-transparent`}
                 />
 
             </label>
