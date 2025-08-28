@@ -1,6 +1,7 @@
 import { SearchBar } from "../components/Layout/SearchBar";
 import { StdCard } from "../components/Card/StdCard";
 import { StudentList } from "../components/List/StudentList";
+import { IoMdPersonAdd } from "react-icons/io";
 const Students = () => {
     return (
         <>
@@ -12,12 +13,13 @@ const Students = () => {
                         <h1 className="text-black text-3xl font-bold">Students</h1>
                         <div className="flex justify-end ">
                             <button className="btn px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700  hover:scale-110 border-0">
+                                <IoMdPersonAdd />
                                 Add Student
                             </button>
                         </div>
                     </div>
                     <StdCard />
-                    <StudentList/>
+                    <StudentList />
                 </div>
             </section>
         </>
