@@ -1,5 +1,6 @@
 import { SearchBar } from "../components/Layout/SearchBar";
 import { StdCard } from "../components/Card/StdCard";
+import { StudentList } from "../components/List/StudentList";
 const Students = () => {
     return (
         <>
@@ -16,6 +17,7 @@ const Students = () => {
                         </div>
                     </div>
                     <StdCard />
+                    <StudentList/>
                 </div>
             </section>
         </>
