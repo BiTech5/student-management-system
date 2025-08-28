@@ -47,6 +47,15 @@ export const StudentList = () => {
                                 </tr>
                             ))}
                         </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colSpan={5} className="text-right">
+                                    <button className="btn px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700 border-none hover:scale-110">
+                                        See More
+                                    </button>
+                                </td>
+                            </tr>
+                        </tfoot>
                     </table>
                 </div>
             </div>
