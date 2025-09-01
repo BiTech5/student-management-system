@@ -9,6 +9,7 @@ const Schedule = lazy(() => import('./pages/Schedule'));
 const Results = lazy(() => import('./pages/Results'));
 const Courses = lazy(() => import('./pages/Courses'));
 import Loading from './components/Loading/Loading';
+import { Detail } from './components/Detail/Detail';
 function Layout() {
   return (
     <div className="h-screen bg-white flex overflow-hidden">
@@ -31,6 +32,7 @@ function App() {
             <Route path="/results" element={<Results />} />
             <Route path="/schedule" element={<Schedule />} />
             <Route path="/courses" element={<Courses />} />
+            <Route path="/detail" element={<Detail />} />
           </Route>
         </Routes>
       </Suspense>
