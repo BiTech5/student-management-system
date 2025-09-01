@@ -25,7 +25,7 @@ export const Detail = () => {
                     </div>
                 </div>
 
-                <div className="mt-6 border-b flex space-x-6">
+                <div className="mt-6 border-b-2 border-t-2 pt-2 border-gray-200 flex space-x-6">
                     {[
                         "overview",
                         "attendance",
@@ -37,8 +37,8 @@ export const Detail = () => {
                         <button
                             key={tab}
                             onClick={() => setActiveTab(tab)}
-                            className={`pb-2 capitalize ${activeTab === tab
-                                    ? "border-b-2 border-blue-500 text-blue-600"
+                            className={`pb-2 capitalize cursor-pointer hover:text-blue-500 ${activeTab === tab
+                                    ? "border-b-2 border-blue-500 text-blue-600 font-bold"
                                     : "text-gray-500"
                                 }`}
                         >
