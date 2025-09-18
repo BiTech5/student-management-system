@@ -53,7 +53,7 @@ export const SideBar: React.FC = () => {
                         key={index}
                         to={item.slug}
                         className={({ isActive }) =>
-                            `flex flex-col items-center text-white text-sm  hover:bg-blue-400/50 ${isActive ? "font-semibold bg-blue-400" : ""
+                            `flex flex-col items-center rounded  text-white text-sm  hover:bg-blue-400/50 ${isActive ? "font-semibold bg-blue-400" : ""
                             }`
                         }
                     >

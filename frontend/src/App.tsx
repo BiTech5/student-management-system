@@ -15,7 +15,9 @@ function Layout() {
     <div className="h-screen bg-white flex overflow-hidden">
       <SideBarProvider>
         <SideBar />
-        <Outlet /> 
+        <main className="flex-1 overflow-y-auto pb-16">
+          <Outlet />
+        </main>
       </SideBarProvider>
     </div>
   );
@@ -23,19 +25,19 @@ function Layout() {
 
 function App() {
   return (
-      <Suspense fallback={<Loading/>}>
-        <Routes>
-          <Route element={<Layout />}>
-            <Route path="/" element={<DashBoard />} />
-            <Route path="/students" element={<Students />} />
-            <Route path="/teachers" element={<Teachers />} />
-            <Route path="/results" element={<Results />} />
-            <Route path="/schedule" element={<Schedule />} />
-            <Route path="/courses" element={<Courses />} />
-            <Route path="/detail" element={<Detail />} />
-          </Route>
-        </Routes>
-      </Suspense>
+    <Suspense fallback={<Loading />}>
+      <Routes>
+        <Route element={<Layout />}>
+          <Route path="/" element={<DashBoard />} />
+          <Route path="/students" element={<Students />} />
+          <Route path="/teachers" element={<Teachers />} />
+          <Route path="/results" element={<Results />} />
+          <Route path="/schedule" element={<Schedule />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/detail" element={<Detail />} />
+        </Route>
+      </Routes>
+    </Suspense>
   );
 }
 
