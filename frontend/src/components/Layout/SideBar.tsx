@@ -22,7 +22,7 @@ export const SideBar: React.FC = () => {
     const { isOpen, toggleSidebar } = useContext(SideBarContext);
     return (
         <>
-            <nav className={`h-screen shadow-md duration-500 ${isOpen ? `w-60` : 'w-20'} p-2 bg-blue-500 flex-shrink-0`}>
+            <nav className={`hidden md:block md:h-screen md:shadow-md md:duration-500 ${isOpen ? `w-60` : 'w-20'} md:p-2 md:bg-blue-500 md:flex-shrink-0`}>
                 <div className="px-3 py-2 h-20 flex justify-between items-center">
                     <h1 className={`${!isOpen && 'w-0 translate-x24'} duration-500 overflow-hidden text-2xl font-bold cursor-no-drop`}>SMS</h1>
                     <MdMenuOpen size={30} className="cursor-pointer" onClick={toggleSidebar} />
