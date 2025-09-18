@@ -46,6 +46,21 @@ export const SideBar: React.FC = () => {
                     ))}
                 </ul>
             </nav>
+            {/* for small screen */}
+            <nav className="flex md:hidden fixed bottom-0 left-0 right-0 bg-blue-500 shadow-md justify-around items-center py-2">
+                {menuItems.map((item, index) => (
+                    <NavLink
+                        key={index}
+                        to={item.slug}
+                        className={({ isActive }) =>
+                            `flex flex-col items-center text-white text-sm  hover:bg-blue-400/50 ${isActive ? "font-semibold bg-blue-400" : ""
+                            }`
+                        }
+                    >
+                        <span className="text-3xl m-3">{item.icons}</span>
+                    </NavLink>
+                ))}
+            </nav>
         </>
     );
 }
