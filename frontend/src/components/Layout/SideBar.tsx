@@ -47,7 +47,7 @@ export const SideBar: React.FC = () => {
                 </ul>
             </nav>
             {/* for small screen */}
-            <nav className="flex md:hidden fixed bottom-0 left-0 right-0 bg-blue-500 shadow-md justify-around items-center py-2">
+            <nav className="flex md:hidden fixed bottom-0 left-0 right-0 bg-blue-500 shadow-md justify-around items-center py-2 z-50">
                 {menuItems.map((item, index) => (
                     <NavLink
                         key={index}
