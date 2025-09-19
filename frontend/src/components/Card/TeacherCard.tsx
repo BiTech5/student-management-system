@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { SideBarContext } from "../../Context/SideBarContext";
 
-export const StdCard = () => {
+export const TeacherCard = () => {
   const { isOpen } = useContext(SideBarContext);
 
   return (
@@ -10,7 +10,7 @@ export const StdCard = () => {
         grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4
       "
     >
-      {/* Total Students */}
+      {/* Total Teachers */}
       <div
         className={`
           flex flex-col justify-center items-center text-black border-2 
@@ -24,7 +24,7 @@ export const StdCard = () => {
             font-bold duration-500 mb-2 text-center
           `}
         >
-          Total Students
+          Total Teachers
         </h2>
         <p
           className={`
@@ -50,7 +50,7 @@ export const StdCard = () => {
             font-bold duration-500 mb-2 text-center
           `}
         >
-          Boys
+          Male Teachers
         </h2>
         <p
           className={`
@@ -76,7 +76,7 @@ export const StdCard = () => {
             font-bold duration-500 mb-2 text-center
           `}
         >
-          Girls
+          Female Teachers
         </h2>
         <p
           className={`
@@ -102,7 +102,7 @@ export const StdCard = () => {
             font-bold duration-500 mb-2 text-center
           `}
         >
-          Classes
+          Total Subjects
         </h2>
         <p
           className={`
