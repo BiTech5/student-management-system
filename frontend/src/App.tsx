@@ -15,7 +15,7 @@ function Layout() {
     <div className="h-screen bg-white flex overflow-hidden">
       <SideBarProvider>
         <SideBar />
-        <main className="flex-1 overflow-y-auto pb-16">
+        <main className="flex-1 overflow-y-auto md:p-0 pb-16">
           <Outlet />
         </main>
       </SideBarProvider>

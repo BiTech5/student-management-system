@@ -51,7 +51,7 @@ export const CourseChart: React.FC = () => {
     return (
       <div
         className={`shadow-lg rounded-2xl bg-white flex justify-center items-center flex-col h-100 p-10 ${
-          isOpen ? 'w-150' : 'w-170'
+          isOpen ? 'w-120' : 'w-140'
         } mt-10 duration-500`}
       >
         <h1 className="text-gray-700 text-2xl font-bold">Course Overview</h1>
