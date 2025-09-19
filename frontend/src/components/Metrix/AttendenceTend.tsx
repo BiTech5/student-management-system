@@ -43,7 +43,7 @@ export const AttenceTend = () => {
             responsive: true,
             plugins: {
                 legend: {
-                    position: 'top' as const, 
+                    position: 'top' as const,
                 },
                 title: {
                     display: true,
@@ -52,7 +52,7 @@ export const AttenceTend = () => {
             },
             scales: {
                 y: {
-                    beginAtZero: true, 
+                    beginAtZero: true,
                     title: {
                         display: true,
                         text: 'Attendance (%)',
@@ -65,11 +65,19 @@ export const AttenceTend = () => {
 
     return (
         <div
-            className={`shadow-lg rounded-2xl bg-white flex justify-center items-center flex-col h-100 p-10 ${isOpen ? 'w-120' : 'w-140'
-                } mt-10 duration-500`}
+            className={`
+    shadow-lg rounded-2xl bg-white flex flex-col justify-center items-center
+    p-6 mt-6 duration-500
+    w-full max-w-md sm:max-w-lg md:${isOpen ? "w-120" : "w-140"}
+  `}
         >
-            <h1 className="text-gray-700 text-2xl font-bold">Course Overview</h1>
-            <Line key={`chart-${isOpen}`} data={data} options={options} />
+            <h1 className="text-gray-700 text-xl sm:text-2xl font-bold text-center">
+                Attendance Overview
+            </h1>
+            <div className="w-full h-64 sm:h-80 md:h-96">
+                <Line key={`chart-${isOpen}`} data={data} options={options} />
+            </div>
         </div>
+
     );
 };

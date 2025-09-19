@@ -71,7 +71,7 @@ const DashBoard: React.FC = () => {
       </div>
 
       {/* Course Chart + Student List */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-50 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 md:gap-10 gap-5 mb-8">
         <CourseChart />
         <div
           className={`duration-500 shadow-lg rounded-2xl bg-white h-100 md:mt-10 mt-4  md:${isOpen ? "w-50" : "w-80"} w-full`}
@@ -106,7 +106,7 @@ const DashBoard: React.FC = () => {
       </div>
 
       {/* Attendance Trend + Notifications */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-50 mb-8">
+      <div className="grid grid-cols-1 lg:grid-cols-2 md:gap-10 gap-5 mb-8">
         <AttenceTend />
         <div className={`duration-500 shadow-lg rounded-2xl bg-white h-100 md:mt-10 mt-4  md:${isOpen ? "w-50" : "w-80"} w-full`}>
           <h1 className="text-center text-2xl m-5 font-bold text-gray-900">
