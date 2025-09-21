@@ -13,7 +13,7 @@ export const CourseList = () => {
           gap-4
         "
       >
-        {["Class", "Section", "Gender", "Faculty"].map((label, index) => (
+        {["Course", "Instructor", "Shift"].map((label, index) => (
           <select
             key={index}
             defaultValue={label}
