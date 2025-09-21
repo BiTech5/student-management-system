@@ -16,7 +16,7 @@ const Courses = () => {
 
                         <button className="btn px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700  hover:scale-110 border-0">
                             <IoMdPersonAdd />
-                            Add Students
+                            Add Course
                         </button>
                     </div>
                     <CourseList />
